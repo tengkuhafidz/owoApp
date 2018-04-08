@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-slides pager>
+    <ion-slide *ngFor="let gift of gifts">
+      <img [src]="gift.image" class="gift-image"/>
+      <h2 class="gift-title" [innerHTML]="gift.name"></h2>
+      <p [innerHTML]="gift.price"></p>
+      <button ion-button class="gift-button" (click)="chooseGift($event, gift)">Gift This</button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

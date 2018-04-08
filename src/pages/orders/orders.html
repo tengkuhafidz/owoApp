@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let order of orders">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img [src]="order.image">
+        </ion-thumbnail>
+        <h2 [innerHTML]="order.name"></h2>
+        <p [innerHTML]="order.date"></p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="chooseGift($event, order)">
+          <ion-icon name="pricetag"></ion-icon>
+          Gift Others
+        </button>
+        <button ion-button color="light" icon-start (click)="viewOrderDetails($event, order)">
+          <ion-icon name="ios-more"></ion-icon>
+          More
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
