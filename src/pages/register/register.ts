@@ -35,8 +35,6 @@ export class RegisterPage {
     if (this.cName, this.cEmail, this.cUserName, this.cPassword) {
       this.userServiceProvider.register(this.cName, this.cEmail, this.cUserName, this.cPassword)
         .then(data => {
-          console.log('REGISTRATION SUCCESS BY RIGHT', data)
-          this.storage.set('user', data)
           this.navCtrl.setRoot(GiftsPage);
       }).catch((error) => {
           this.error = "*Invalid registration";

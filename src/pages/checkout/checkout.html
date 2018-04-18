@@ -15,31 +15,15 @@
 
 
 <ion-content>
-  <ion-list radio-group>
+  <ion-list radio-group [(ngModel)]="selectedFriend">
     <ion-list-header>
       Gift To
     </ion-list-header>
-
     <ion-item *ngFor="let friend of friends">
       <ion-label>{{friend.firstName}}</ion-label>
-      <ion-radio checked="true" value="go"></ion-radio>
+      <ion-radio [value]="friend"></ion-radio>
     </ion-item>
-
   </ion-list>
-  <br />
-  <ion-list radio-group>
-    <ion-list-header>
-      Pay with
-    </ion-list-header>
-
-    <ion-item *ngFor="let card of cards">
-      <ion-label>{{ca.firstName}}</ion-label>
-      <ion-radio checked="true" value="go"></ion-radio>
-    </ion-item>
-
-  </ion-list>
-
-
 
   <button ion-button block (click)="checkout()">Confirm Gift</button>
 </ion-content>

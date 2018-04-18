@@ -34,7 +34,6 @@ export class LoginPage {
   login() {
     this.userServiceProvider.login(this.cUserName, this.cPassword)
     .then(data => {
-      this.storage.set('user', data);
       this.navCtrl.setRoot(GiftsPage);
   }).catch((error) => {
       this.error = "*Invalid username or password" ;

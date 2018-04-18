@@ -22,7 +22,6 @@ export class GiftsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public giftServiceProvider: GiftServiceProvider, public storage: Storage) {
     this.getGiftSuggestions();
-    this.setUser();
   }
 
   getGiftSuggestions() {
@@ -33,12 +32,6 @@ export class GiftsPage {
         this.gifts.push(data[i]);
       }
     });
-  }
-
-  setUser() {
-    console.log('currrrrr: ', this.storage.get('user').then((val) => {
-          console.log('user', val);
-        }));
   }
 
   ionViewDidLoad() {

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CheckoutSuccessPage } from '../checkout-success/checkout-success';
 import { Storage } from '@ionic/storage';
+import { UserServiceProvider } from '../../providers/user-service/user-service';
+
 
 /**
  * Generated class for the CheckoutPage page.
@@ -20,10 +22,11 @@ export class CheckoutPage {
   user: any;
   friends: any;
   cards: any;
+  chosenFriend: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userServiceProvider: UserServiceProvider, public storage: Storage) {
     this.selectedGift = navParams.get('gift');
-    console.log('this.selectedGift', this.selectedGift)
+    // this.getUser();
     this.setUserData();
   }
 
@@ -33,6 +36,10 @@ export class CheckoutPage {
 
   checkout() {
     this.navCtrl.push(CheckoutSuccessPage)
+  }
+
+  getUser() {
+  
   }
 
   setUserData() {
