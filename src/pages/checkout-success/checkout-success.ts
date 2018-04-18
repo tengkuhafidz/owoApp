@@ -26,4 +26,6 @@ export class CheckoutSuccessPage {
      this.navCtrl.popToRoot();
   }
 
+
+
 }

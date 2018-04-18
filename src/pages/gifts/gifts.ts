@@ -27,10 +27,7 @@ export class GiftsPage {
   getGiftSuggestions() {
     this.giftServiceProvider.getGiftSuggestions()
     .then(data => {
-      this.gifts = [];
-      for(let i = 0; i < 6; i+=1) {
-        this.gifts.push(data[i]);
-      }
+      this.gifts = data;
     });
   }
 

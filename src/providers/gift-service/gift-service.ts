@@ -24,4 +24,15 @@ export class GiftServiceProvider {
       });
     });
   }
+
+  order(customerOrder) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/order', customerOrder).subscribe(data => {
+        resolve(data);
+      }, err => {
+        reject(err);
+      });
+    });
+  }
+
 }

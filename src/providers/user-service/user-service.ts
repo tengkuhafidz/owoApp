@@ -18,20 +18,19 @@ export class UserServiceProvider {
     console.log('Hello UserServiceProvider Provider');
   }
 
-  getUser() {
-    _this = this;
-    this.storage.get('user').then((user) => {console.log('!!!', user)});
-    console.log('???', this.user)
-    return new Promise((resolve, reject) => {
-
-      this.http.get(this.apiUrl+'/user/'+this.user.cUserName).subscribe(data => {
-        console.log('getUser', data)
-        resolve(data);
-      }, err => {
-        reject(err);
-      });
-    });
-  }
+  // getUser() {
+  //   this.storage.get('user').then((user) => {console.log('!!!', user)});
+  //   console.log('???', this.user)
+  //   return new Promise((resolve, reject) => {
+  //
+  //     this.http.get(this.apiUrl+'/user/'+this.user.cUserName).subscribe(data => {
+  //       console.log('getUser', data)
+  //       resolve(data);
+  //     }, err => {
+  //       reject(err);
+  //     });
+  //   });
+  // }
 
   login(cUserName: string, cPassword:string) {
     return new Promise((resolve, reject) => {

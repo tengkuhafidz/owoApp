@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CheckoutSuccessPage } from '../checkout-success/checkout-success';
 import { Storage } from '@ionic/storage';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
+import { GiftServiceProvider } from '../../providers/gift-service/gift-service';
 
 
 /**
@@ -22,9 +23,10 @@ export class CheckoutPage {
   user: any;
   friends: any;
   cards: any;
-  chosenFriend: any;
+  selectedFriend: any;
+  selectedCard: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userServiceProvider: UserServiceProvider, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userServiceProvider: UserServiceProvider, public giftServiceProvider: GiftServiceProvider, public storage: Storage) {
     this.selectedGift = navParams.get('gift');
     // this.getUser();
     this.setUserData();
@@ -35,11 +37,26 @@ export class CheckoutPage {
   }
 
   checkout() {
-    this.navCtrl.push(CheckoutSuccessPage)
+    console.log('selectedFriend', this.selectedFriend);
+    console.log('selectedCard', this.selectedCard);
+    console.log('user', this.user)
+    if(this.user && this.selectedCard && this.selectedFriend) {
+      const order = {
+        customer: this.user,
+        oiList: [{
+          product: this.selectedGift,
+          oiAmount: this.selectedGift.pPrice,
+          oiQty: 1
+        }],
+        orderAddress: this.selectedFriend
+      }
+      console.log('ORDER!', order)
+      this.navCtrl.push(CheckoutSuccessPage)
+    }
   }
 
   getUser() {
-  
+
   }
 
   setUserData() {

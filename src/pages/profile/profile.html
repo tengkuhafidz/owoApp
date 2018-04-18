@@ -16,10 +16,8 @@
 
 <ion-content padding>
   <ion-item *ngIf="user">
-    <ion-label>name</ion-label>
-
-     <ion-label>{{user.name}}</ion-label>
-   </ion-item>
+      {{user.cName}}
+  </ion-item>
 
   <button ion-button block (click)="logout()" color="primary-light">Logout</button>
 </ion-content>

@@ -19,16 +19,13 @@ import { Storage } from '@ionic/storage';
 export class ProfilePage {
   user: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userServiceProvider: UserServiceProvider, private storage: Storage) {
-    storage.get('user').then((val) => {
-      console.log('user', val);
-    });
     this.getUser();
   }
 
   getUser() {
-    this.userServiceProvider.getUser()
-    .then(data => {
-      this.user = data;
+    this.storage.get('user').then((user) => {
+      console.log('user', user);
+      this.user = user;
     });
   }
 
