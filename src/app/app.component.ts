@@ -8,6 +8,7 @@ import { GiftsPage } from '../pages/gifts/gifts';
 import { OrdersPage } from '../pages/orders/orders';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -16,12 +17,22 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = GiftsPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage) {
     this.initializeApp();
+
+    storage.get('user').then((user) => {
+      if (user) {
+        this.rootPage = GiftsPage;
+      } else {
+        this.rootPage = LoginPage;
+      }
+    });
+
+
 
     // used for an example of ngFor and navigation
     this.pages = [

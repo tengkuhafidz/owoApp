@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CheckoutPage } from '../checkout/checkout';
+import { GiftServiceProvider } from '../../providers/gift-service/gift-service';
+import { Storage } from '@ionic/storage';
+
+
 /**
  * Generated class for the GiftsPage page.
  *
@@ -14,35 +18,27 @@ import { CheckoutPage } from '../checkout/checkout';
   templateUrl: 'gifts.html',
 })
 export class GiftsPage {
-  gifts = [
-    {
-      name: "Kisses",
-      price: "$2.00",
-      image: "assets/imgs/kisses.jpg",
-    },
-    {
-      name: "Hershey",
-      price: "$2.10",
-      image: "assets/imgs/hershey.jpg",
-    },
-    {
-      name: "Dove",
-      price: "$2.50",
-      image: "assets/imgs/dove.jpg",
-    },
-    {
-      name: "Bounty",
-      price: "$2.10",
-      image: "assets/imgs/bounty.jpg",
-    },
-    {
-      name: "Dairymilk",
-      price: "$2.50",
-      image: "assets/imgs/dairymilk.jpg",
-    }
-  ];
+  gifts: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public giftServiceProvider: GiftServiceProvider, public storage: Storage) {
+    this.getGiftSuggestions();
+    this.setUser();
+  }
+
+  getGiftSuggestions() {
+    this.giftServiceProvider.getGiftSuggestions()
+    .then(data => {
+      this.gifts = [];
+      for(let i = 0; i < 6; i+=1) {
+        this.gifts.push(data[i]);
+      }
+    });
+  }
+
+  setUser() {
+    console.log('currrrrr: ', this.storage.get('user').then((val) => {
+          console.log('user', val);
+        }));
   }
 
   ionViewDidLoad() {

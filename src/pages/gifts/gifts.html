@@ -10,9 +10,9 @@
 <ion-content padding>
   <ion-slides pager>
     <ion-slide *ngFor="let gift of gifts">
-      <img [src]="gift.image" class="gift-image"/>
-      <h2 class="gift-title" [innerHTML]="gift.name"></h2>
-      <p [innerHTML]="gift.price"></p>
+      <img [src]="'http://localhost:8080/OwoGifting-war/images/assets/' + gift.pCategory + '/' + gift.pId + '-image.jpeg'" class="gift-image"/>
+      <h2 class="gift-title" [innerHTML]="gift.pName"></h2>
+      <p [innerHTML]="gift.pPrice"></p>
       <button ion-button class="gift-button" (click)="chooseGift($event, gift)">Gift This</button>
     </ion-slide>
   </ion-slides>

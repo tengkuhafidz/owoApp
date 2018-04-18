@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CheckoutSuccessPage } from '../checkout-success/checkout-success';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the CheckoutPage page.
@@ -16,9 +17,14 @@ import { CheckoutSuccessPage } from '../checkout-success/checkout-success';
 })
 export class CheckoutPage {
   selectedGift: any;
+  user: any;
+  friends: any;
+  cards: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     this.selectedGift = navParams.get('gift');
+    console.log('this.selectedGift', this.selectedGift)
+    this.setUserData();
   }
 
   ionViewDidLoad() {
@@ -29,17 +35,11 @@ export class CheckoutPage {
     this.navCtrl.push(CheckoutSuccessPage)
   }
 
-    /**
-   * function to adjust the height of the message textarea
-   * @param {any} event - the event, which is provided by the textarea input
-   * @return {void}
-   */
-  protected adjustTextarea(event: any): void {
-  	let textarea: any		= event.target;
-  	textarea.style.overflow = 'hidden';
-  	textarea.style.height 	= 'auto';
-  	textarea.style.height 	= textarea.scrollHeight + 'px';
-  	return;
+  setUserData() {
+    this.storage.get('user').then((user) => {
+      this.user = user;
+      this.friends = user.addressList;
+      this.cards = user.cardList;
+    });
   }
-
 }

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { UserServiceProvider } from '../../providers/user-service/user-service';
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -14,8 +17,19 @@ import { LoginPage } from '../login/login';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  user: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userServiceProvider: UserServiceProvider, private storage: Storage) {
+    storage.get('user').then((val) => {
+      console.log('user', val);
+    });
+    this.getUser();
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  getUser() {
+    this.userServiceProvider.getUser()
+    .then(data => {
+      this.user = data;
+    });
   }
 
   ionViewDidLoad() {
@@ -23,7 +37,7 @@ export class ProfilePage {
   }
 
   logout() {
-    this.navCtrl.setRoot(LoginPage)
+    this.storage.clear().then(() => this.navCtrl.setRoot(LoginPage))
   }
 
 }

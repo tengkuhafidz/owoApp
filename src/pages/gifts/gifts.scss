@@ -4,6 +4,10 @@ page-gifts {
     border-color: transparent;
   }
 
+  img {
+    max-height: 10px;
+  }
+
   .slide-zoom {
     height: 100%;
   }
@@ -13,7 +17,7 @@ page-gifts {
   }
 
   .slide-image {
-    max-height: 50%;
+    height: 50%;
     max-width: 60%;
     margin: 18px 0;
   }

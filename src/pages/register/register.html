@@ -14,24 +14,37 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Username</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-  </ion-list>
-
-  <button ion-button block>Register</button>
+  <form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input placeholder="Name" name="name" id="nameField"
+                       type="text" required [(ngModel)]="cName" #username></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Email" name="email" id="emailField"
+                       type="email" required [(ngModel)]="cEmail"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Username" name="username" id="usernameField"
+                       type="text" required [(ngModel)]="cUserName" #username></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Password" name="password" id="passwordField"
+                       type="password" required [(ngModel)]="cPassword"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <button ion-button class="submit-btn" full type="submit"
+                [disabled]="!registerForm.form.valid">Register
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
 
 </ion-content>

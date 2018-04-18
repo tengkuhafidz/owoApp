@@ -14,18 +14,30 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <button ion-button block (click)="login()" color="primary-light">Login</button>
+  <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input placeholder="Username" name="username" id="loginField"
+                       type="text" required [(ngModel)]="cUserName" #username></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Password" name="password" id="passwordField"
+                       type="password" required [(ngModel)]="cPassword"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <button ion-button class="submit-btn" full type="submit"
+                [disabled]="!loginForm.form.valid">Login
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
 
   <p class="signUpPara">No account yet? <a (click)="goToSignUpPage()">Register</a>.</p>
 
